@@ -2,9 +2,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Presentation.Request;
 
-public class UpdateTutorialCommand
+public class CreateTutorialCommand
 {
-    [Required] public int Id { get; set; }
     [Required] public string Name { get; set; }
 
     [Required] public string Description { get; set; }

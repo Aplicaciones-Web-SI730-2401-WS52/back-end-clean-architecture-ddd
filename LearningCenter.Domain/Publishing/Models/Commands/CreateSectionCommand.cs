@@ -1,8 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 
+
 namespace Presentation.Request;
 
-public class DeleteTutorialCommand
+public class SectionRequest
 {
-    public int Id { get; set; }
+    [Required] public string Title { get; set; }
 }
