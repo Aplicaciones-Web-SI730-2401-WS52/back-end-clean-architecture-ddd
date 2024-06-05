@@ -6,7 +6,7 @@ public class CreateTutorialCommand
 {
     [Required] public string Name { get; set; }
 
-    [Required] public string Description { get; set; }
+    public string Description { get; set; }
 
     [Required] [Range(1990, 2024)] public int Year { get; set; }
 

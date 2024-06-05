@@ -76,7 +76,32 @@ public class TutorialController : ControllerBase
     }
 
     // POST: api/Tutorial
+    // POST: api/Tutorial
+    /// <summary>
+    /// Creates a new tutorial.
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /api/tutorial
+    ///     {
+    ///        "name": "New tutorial",
+    ///        "description": ""
+    ///     }
+    ///
+    /// </remarks>
+    /// <param name="CreateTutorialCommand">The tutorial to create</param>
+    /// <returns>A newly created tutorial</returns>
+    /// <response code="201">Returns the newly created tutorial</response>
+    /// <response code="400">If the tutorial has invalid property</response>
+    /// <response code="409">Error validating data</response>
+    /// <response code="500">Unexpected error</response>
     [HttpPost]
+    [ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(void), StatusCodes.Status409Conflict)]
+    [ProducesResponseType(typeof(void),StatusCodes.Status500InternalServerError)]
+    [Produces(MediaTypeNames.Application.Json)]
     public async Task<IActionResult> PostAsync([FromBody] CreateTutorialCommand command)
     {
         if (!ModelState.IsValid) return BadRequest();
