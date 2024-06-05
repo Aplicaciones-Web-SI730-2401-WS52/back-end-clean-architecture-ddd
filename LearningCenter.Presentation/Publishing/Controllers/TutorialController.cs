@@ -1,3 +1,4 @@
+using System.Net.Mime;
 using _1_API.Response;
 using Application;
 using Infraestructure;
@@ -5,6 +6,7 @@ using AutoMapper;
 using Domain;
 using LearningCenter.Domain.Publishing.Models.Queries;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.CodeAnalysis.Elfie.Serialization;
 using Presentation.Request;
 
@@ -28,7 +30,18 @@ public class TutorialController : ControllerBase
 
 
     // GET: api/Tutorial
+    ///<summary>Obtain all the active tutorials</summary>
+    /// <remarks>
+    /// GET /api/Tutorial
+    ///   </remarks>
+    /// <response code="200">Returns all the tutorials</response>
+    /// <response code="404">If there are no tutorials</response>
+    /// <response code="500">If there is an internal server error</response>
     [HttpGet]
+    [ProducesResponseType( typeof(List<TutorialResponse>), 200)]
+    [ProducesResponseType( typeof(void),StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(void),StatusCodes.Status500InternalServerError)]
+    [Produces(MediaTypeNames.Application.Json)]
     public async Task<IActionResult> GetAsync()
     {
         var result = await _tutorialQueryService.Handle(new GetAllTutorialsQuery());

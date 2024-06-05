@@ -17,4 +17,10 @@
         <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Domain\" />
+      <Folder Include="Mtk\" />
+      <Folder Include="Purchase\" />
+    </ItemGroup>
+
 </Project>

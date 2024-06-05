@@ -10,4 +10,8 @@
         <ProjectReference Include="..\LearningCenter.Shared\LearningCenter.Shared.csproj"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Publishing\Models\ValueObjects\" />
+    </ItemGroup>
+
 </Project>
