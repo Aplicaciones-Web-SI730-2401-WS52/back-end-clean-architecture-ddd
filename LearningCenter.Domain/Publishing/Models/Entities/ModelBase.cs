@@ -9,10 +9,8 @@ public class ModelBase
     public int CreatedUser { get; set; }
 
     public int? UpdatedUser { get; set; }
-
-    [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-
-    public DateTime CreatedDate { get; set; }
+    
+    public DateTime CreatedDate { get; set; } = DateTime.Now;
 
     public DateTime? UpdatedDate { get; set; }
     public bool IsActive { get; set; } = true;
