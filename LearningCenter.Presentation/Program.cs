@@ -1,5 +1,6 @@
 using System.Reflection;
 using _1_API.Mapper;
+using _2_Domain.IAM.CommandServices;
 using Application;
 using Application.IAM.CommandServices;
 using Domain;
@@ -60,6 +61,7 @@ builder.Services.AddScoped<ITutorialQueryService, TutorialQueryService>();
 builder.Services.AddScoped<IUserRepository,UserRepository>();
 builder.Services.AddScoped<IUserCommandService,UserCommandService>();
 builder.Services.AddScoped<IEncryptService,EncryptService>();
+builder.Services.AddScoped<ITokenService,TokenService>();
 
 //AUtomapper
 builder.Services.AddAutoMapper(
@@ -103,6 +105,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.UseCors();
+app.UseCors("AllowAllPolicy");
 
 app.Run();

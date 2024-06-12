@@ -4,12 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using LearningCenter.Domain.IAM.Models.Comands;
 using LearningCenter.Domain.IAM.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LearningCenter.Presentation.IAM.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -23,6 +24,7 @@ namespace LearningCenter.Presentation.IAM.Controllers
         
         // GET: api/User
         [HttpGet]
+        [Route("getall")]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
@@ -37,18 +39,20 @@ namespace LearningCenter.Presentation.IAM.Controllers
 
         // POST: api/User
         [HttpPost("register")]
+        [AllowAnonymous]
         
         public async Task<IActionResult> RegisterAsync([FromBody] SingupCommand command)
         {
-            _userCommandService.Handle(command);
-            return CreatedAtAction("Post", new { id = 1 });
+           var retun =  await _userCommandService.Handle(command);
+            return CreatedAtAction("register", new { id = retun });
         }
         
         [HttpPost("login")]
+        [AllowAnonymous]
         public async Task<IActionResult> LoginAsync([FromBody] SigninCommand command)
         {
-            _userCommandService.Handle(command);
-            return CreatedAtAction("Post", new { jwt = 1 });
+            var retun =  await _userCommandService.Handle(command);
+            return CreatedAtAction("login", new { jwt = retun });
         }
 
         // PUT: api/User/5

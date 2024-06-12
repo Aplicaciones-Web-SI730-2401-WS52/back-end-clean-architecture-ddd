@@ -1,6 +1,8 @@
+using LearningCenter.Domain.IAM.Models;
+
 namespace LearningCenter.Domain.IAM.Services;
 
-public class ITokenService
+public interface ITokenService
 {
-    
+    string GenerateToken(User user);
 }
