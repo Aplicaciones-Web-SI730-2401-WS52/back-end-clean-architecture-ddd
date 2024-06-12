@@ -1,4 +1,5 @@
 using Domain;
+using LearningCenter.Domain.IAM.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infraestructure.Contexts;
@@ -15,13 +16,14 @@ public class LearningCenterContext : DbContext
 
     public DbSet<Tutorial> Tutorials { get; set; }
     public DbSet<Section> Sections { get; set; }
+    public DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (!optionsBuilder.IsConfigured)
         {
             var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
-            optionsBuilder.UseMySql("Server=127.0.0.1,3306;Uid=root;Pwd=Upc123!;Database=learning_center_ws52;",
+            optionsBuilder.UseMySql("Server=localhost,3306;Uid=root;Pwd=Upc123!;Database=learning_center_ws52;",
                 serverVersion);
         }
     }
@@ -35,5 +37,6 @@ public class LearningCenterContext : DbContext
         //builder.Entity<Tutorial>().Property(p => p.Name).IsRequired().HasMaxLength(25);
 
         builder.Entity<Section>().ToTable("Section");
+        builder.Entity<User>().ToTable("User");
     }
 }

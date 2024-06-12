@@ -1,14 +1,28 @@
 using System.Reflection;
 using _1_API.Mapper;
+using _2_Domain.IAM.CommandServices;
 using Application;
+using Application.IAM.CommandServices;
 using Domain;
 using Infraestructure;
 using Infraestructure.Contexts;
+using LearningCenter.Domain.IAM.Repositories;
+using LearningCenter.Domain.IAM.Services;
+using LearningCenter.Infraestructure.IAM.Persistence;
 using LearningCenter.Presentation.Middleware;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//Ad cors
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllPolicy", 
+        policy => policy.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+});
 
 // Add services to the container.
 
@@ -44,6 +58,10 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddScoped<ITutorialRepository, TutorialRepository>();
 builder.Services.AddScoped<ITutorialCommandService, TutorialCommandService>();
 builder.Services.AddScoped<ITutorialQueryService, TutorialQueryService>();
+builder.Services.AddScoped<IUserRepository,UserRepository>();
+builder.Services.AddScoped<IUserCommandService,UserCommandService>();
+builder.Services.AddScoped<IEncryptService,EncryptService>();
+builder.Services.AddScoped<ITokenService,TokenService>();
 
 //AUtomapper
 builder.Services.AddAutoMapper(
@@ -86,5 +104,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors("AllowAllPolicy");
 
 app.Run();

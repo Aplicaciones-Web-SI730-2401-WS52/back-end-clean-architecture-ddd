@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningCenter.Presetation.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningCenter.Domain", "LearningCenter.Domain\LearningCenter.Domain.csproj", "{077A0C6E-58E6-4186-A837-801462FA45FA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Main", "Main\Main.csproj", "{33DF0D0D-C7EB-40D8-8F23-0111C7CA60B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +50,9 @@ Global
 		{077A0C6E-58E6-4186-A837-801462FA45FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{077A0C6E-58E6-4186-A837-801462FA45FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{077A0C6E-58E6-4186-A837-801462FA45FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33DF0D0D-C7EB-40D8-8F23-0111C7CA60B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33DF0D0D-C7EB-40D8-8F23-0111C7CA60B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33DF0D0D-C7EB-40D8-8F23-0111C7CA60B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33DF0D0D-C7EB-40D8-8F23-0111C7CA60B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,6 +1,6 @@
 
 using Domain;
-using LearningCenter.Domain.Security.Models;
+using LearningCenter.Domain.IAM.Models;
 
 namespace LearningCenter.Domain.Publishing.Models.Aggregates;
 
