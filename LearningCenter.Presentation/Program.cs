@@ -1,9 +1,13 @@
 using System.Reflection;
 using _1_API.Mapper;
 using Application;
+using Application.IAM.CommandServices;
 using Domain;
 using Infraestructure;
 using Infraestructure.Contexts;
+using LearningCenter.Domain.IAM.Repositories;
+using LearningCenter.Domain.IAM.Services;
+using LearningCenter.Infraestructure.IAM.Persistence;
 using LearningCenter.Presentation.Middleware;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -53,6 +57,9 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddScoped<ITutorialRepository, TutorialRepository>();
 builder.Services.AddScoped<ITutorialCommandService, TutorialCommandService>();
 builder.Services.AddScoped<ITutorialQueryService, TutorialQueryService>();
+builder.Services.AddScoped<IUserRepository,UserRepository>();
+builder.Services.AddScoped<IUserCommandService,UserCommandService>();
+builder.Services.AddScoped<IEncryptService,EncryptService>();
 
 //AUtomapper
 builder.Services.AddAutoMapper(
