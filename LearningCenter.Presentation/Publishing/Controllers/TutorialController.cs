@@ -5,6 +5,7 @@ using Infraestructure;
 using AutoMapper;
 using Domain;
 using LearningCenter.Domain.Publishing.Models.Queries;
+using LearningCenter.Presentation.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.CodeAnalysis.Elfie.Serialization;
@@ -42,6 +43,7 @@ public class TutorialController : ControllerBase
     [ProducesResponseType( typeof(void),StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(void),StatusCodes.Status500InternalServerError)]
     [Produces(MediaTypeNames.Application.Json)]
+    [CustomAuthorize("mkt")]
     public async Task<IActionResult> GetAsync()
     {
         var result = await _tutorialQueryService.Handle(new GetAllTutorialsQuery());
@@ -54,6 +56,7 @@ public class TutorialController : ControllerBase
     // GET: api/Tutorial/Search
     [HttpGet]
     [Route("Search")]
+    [CustomAuthorize("mkt")]
     public async Task<IActionResult> GetSearchAsync(string? name, int? year)
     {
         //var data = await _tutorialRepository.GetSearchAsync(name, year);
@@ -66,6 +69,8 @@ public class TutorialController : ControllerBase
 
     // GET: api/Tutorial/5
     [HttpGet("{id}", Name = "GetAsync")]
+    [CustomAuthorize("mkt")]
+
     public async Task<IActionResult> GetAsync(int id)
     {
         var result = await _tutorialQueryService.Handle(new GetTutorialsByIdQuery(id));
@@ -102,6 +107,7 @@ public class TutorialController : ControllerBase
     [ProducesResponseType(typeof(void), StatusCodes.Status409Conflict)]
     [ProducesResponseType(typeof(void),StatusCodes.Status500InternalServerError)]
     [Produces(MediaTypeNames.Application.Json)]
+    [CustomAuthorize("admin")]
     public async Task<IActionResult> PostAsync([FromBody] CreateTutorialCommand command)
     {
         if (!ModelState.IsValid) return BadRequest();
@@ -117,6 +123,7 @@ public class TutorialController : ControllerBase
 
     // PUT: api/Tutorial/5
     [HttpPut("{id}")]
+    [CustomAuthorize("admin")]
     public async Task<IActionResult> PutAsync(int id, [FromBody] UpdateTutorialCommand command)
     {
         command.Id = id;
@@ -129,6 +136,7 @@ public class TutorialController : ControllerBase
 
     // DELETE: api/Tutorial/5
     [HttpDelete("{id}")]
+    [CustomAuthorize("admin")]
     public async Task<IActionResult> DeleteAsync(int id)
     {
         DeleteTutorialCommand command = new DeleteTutorialCommand { Id = id };
