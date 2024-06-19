@@ -3,6 +3,7 @@ using _1_API.Mapper;
 using _2_Domain.IAM.CommandServices;
 using Application;
 using Application.IAM.CommandServices;
+using Application.IAM.QueryServices;
 using Domain;
 using Infraestructure;
 using Infraestructure.Contexts;
@@ -62,6 +63,7 @@ builder.Services.AddScoped<IUserRepository,UserRepository>();
 builder.Services.AddScoped<IUserCommandService,UserCommandService>();
 builder.Services.AddScoped<IEncryptService,EncryptService>();
 builder.Services.AddScoped<ITokenService,TokenService>();
+builder.Services.AddScoped<IUserQueryService,UserQueryService>();
 
 //AUtomapper
 builder.Services.AddAutoMapper(
@@ -104,6 +106,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseMiddleware<AuthenticationMiddleware>();
 
 app.UseCors("AllowAllPolicy");
 

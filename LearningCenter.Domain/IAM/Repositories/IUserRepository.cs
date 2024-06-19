@@ -6,5 +6,5 @@ public interface IUserRepository
 {
     Task<int> RegisterAsync(User user);
     Task<User?> GetUserByUsernameAsync(string username);
- 
+    Task<User?> GetUserByIdAsync(int id);
 }

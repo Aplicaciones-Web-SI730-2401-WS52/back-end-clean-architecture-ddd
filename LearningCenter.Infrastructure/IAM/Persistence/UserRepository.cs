@@ -25,7 +25,13 @@ public class UserRepository : IUserRepository
 
     public async Task<User?> GetUserByUsernameAsync(string username)
     {
-       var user = await _learningCenterContext.Users.FirstOrDefaultAsync(x => x.Username == username);
+       var user = await _learningCenterContext.Users.FirstOrDefaultAsync(x => x.Username == username && x.IsActive);
        return user;
+    }
+
+    public async Task<User?> GetUserByIdAsync(int id)
+    {
+        var user = await _learningCenterContext.Users.FirstOrDefaultAsync(x => x.Id == id && x.IsActive);
+        return user;
     }
 }
